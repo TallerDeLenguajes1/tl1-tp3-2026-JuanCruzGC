@@ -16,12 +16,31 @@ void buscarNombrePorId(char *V[],int id);
 int main()
 {
     char *nombres[cant_alumnos];
+    int menu=2;
+    char palabra[20];
     cargarPersonas(nombres);
-    //mostrarPersonas(nombres);
-    char palabra[20];int result;
-    printf("Ingrese un nombre para realizar la busqueda:");
-    scanf("%s", palabra);
-    buscarNombre(nombres,palabra);
+    while(menu==1 || menu==2){
+        printf("-----MENU INTERACTIVO-----\n");
+        printf("1: Buscar una persona por id\n");
+        printf("2: Buscar una persona por palabra clave\n");
+        printf("0: Salir del menu\n");
+        scanf("%d",&menu);
+        switch(menu){
+            case 1:
+                printf("Ingrese el id\n");
+                int id;
+                scanf("%d",&id);
+                buscarNombrePorId(nombres,id);
+            break;
+            case 2:
+                printf("Ingrese la palabra a buscar\n");
+                scanf("%s",palabra);
+                buscarNombrePorPalabra(nombres,palabra);
+            break;
+            default:
+                printf("-----TERMINANDO PROGRAMA-----\n");
+        }
+    }
 }
 
 //------FUNCIONES-----//
@@ -53,7 +72,7 @@ void buscarNombrePorId(char *V[],int id){
     if(cant_alumnos>=id){
         printf("Nombre del alumno: %s\n", V[id-1]);
     }else{
-        print("No se encontró el valor buscado\n");
+        printf("No se encontró el valor buscado\n");
     }
 }
 
@@ -64,9 +83,12 @@ void buscarNombrePorPalabra(char *V[],char palabra[]){
     while(seEncontro!=1 && cant_alumnos>i){
         resultado=strstr(V[i],palabra);
         if(resultado!=NULL){
-            printf("Coincide con: %s",V[i]);
+            printf("Coincide con: %s\n",V[i]);
             seEncontro=1;
         }
         i++;
+    }
+    if(seEncontro==0){
+        printf("No se encontro la palabra...\n");
     }
 }
