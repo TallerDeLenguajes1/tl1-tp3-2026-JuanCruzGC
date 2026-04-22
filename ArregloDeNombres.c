@@ -9,6 +9,7 @@
 //-----DECLARACION DE FUNCIONES-----//
 void cargarPersonas(char *V[]);
 void mostrarPersonas(char *V[]);
+void buscarNombre(char *V[],int id);
 
 //-----MAIN-----//
 int main()
@@ -39,6 +40,15 @@ void mostrarPersonas(char *V[])
     int i;
     for (i = 0; i < cant_alumnos; i++)
     {
-        printf("\nNombre %d: %s", (i + 1), V[i]);
+        printf("Nombre %d: %s\n", (i + 1), V[i]);
     }
 }
+
+void buscarNombre(char *V[],int id){
+    if(cant_alumnos>=id){
+        printf("Nombre del alumno: %s\n", V[id-1]);
+    }else{
+        print("No se encontró el valor buscado\n");
+    }
+}
+
